@@ -63,7 +63,7 @@ A few code snippet examples:
 
 ### Continued development
 
-In future I hope to use gid in more projects.
+In future I hope to use grid in more projects.
 
 ### Useful resources
 
