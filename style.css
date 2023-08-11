@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
 	--soft-orange: hsl(35, 77%, 62%);
 	--soft-red: hsl(5, 85%, 63%);
@@ -5,6 +7,7 @@
 	--grayish-blue: hsl(233, 8%, 79%);
 	--dark-grayish-blue: hsl(236, 13%, 42%);
 	--very-dark-blue: hsl(240, 100%, 5%);
+	--news-size: 120px;
 }
 
 @font-face {
@@ -43,14 +46,59 @@ a {
 	text-decoration: none;
 }
 
+main {
+	min-height: 95dvh;
+}
+
+.page {
+	display: grid;
+	max-width: 1000px;
+	box-sizing: border-box;
+	/* padding: 50px 150px; */
+	padding: 50px 0;
+	margin: auto;
+	grid-template-rows: 50px 1fr var(--news-size);
+	/* gap: minmax(0, 50px); */
+	gap: 5dvh;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	/* margin: 40px 0; */
+}
+
 .nav {
 	list-style: none;
 	padding: 0;
+	display: flex;
+	gap: 40px;
 }
 
 .nav__item {
 	color: var(--dark-grayish-blue);
 	display: inline-block;
+}
+
+.nav__item:hover {
+	color: var(--soft-red);
+}
+
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
+}
+
+.header {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	/* grid-template-rows: 1fr 1fr; */
+	grid-column: 1 / 3;
+}
+
+.header__img-container {
+	grid-area: 1 / 1 / 2 / 3;
 }
 
 .header__img {
@@ -59,29 +107,39 @@ a {
 }
 
 .header__heading {
+	grid-area: 2 / 1 / 3 / 2;
 	font-weight: 800;
 	color: var(--very-dark-blue);
 	margin: 0;
+	font-size: 3rem;
+	max-width: 300px;
 	margin-bottom: 1rem;
 }
 
 .header__paragraph {
 	margin-top: 0;
 	margin-bottom: 1.2rem;
+	line-height: 1.5rem;
 }
 
 .header__btn {
 	display: inline-block;
 	color: var(--off-white);
+	font-size: 13px;
 	background-color: var(--soft-red);
-	padding: 10px 20px;
+	padding: 15px 25px;
 	text-transform: uppercase;
 	letter-spacing: 4px;
 }
 
+.header__btn:hover {
+	background-color: var(--very-dark-blue);
+	color: white;
+}
+
 .side {
 	background-color: var(--very-dark-blue);
-	margin: 3rem 0px;
+	/* margin: 3rem 0px; */
 	padding: 15px;
 }
 
@@ -96,6 +154,10 @@ a {
 	border-bottom: 1px solid var(--dark-grayish-blue);
 }
 
+.side__item-title:hover {
+	color: var(--soft-orange);
+}
+
 .side__item-title {
 	color: var(--off-white);
 	font-weight: 700;
@@ -108,23 +170,169 @@ a {
 	margin-bottom: 1.5rem;
 }
 
+.news {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: var(--news-size);
+}
+
 .card {
-	margin-bottom: 2rem;
+	/* margin-bottom: 2rem; */
+	display: flex;
+	gap: 20px;
 	/* background-color: red; */
+}
+
+.card__img-container {
+	flex-shrink: 1;
+}
+
+.card__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .card__heading {
 	color: var(--grayish-blue);
 	margin: 0;
+	font-size: 2rem;
+}
+
+h3 {
+	margin: 0;
 }
 
 .card__title {
 	color: var(--very-dark-blue);
-	margin: 0.5rem 0;
+	display: inline-block;
+	margin: 8px 0;
 	font-weight: 800;
+}
+
+.card__title:hover {
+	color: var(--soft-red);
 }
 
 .card__para {
 	margin: 0;
 	line-height: 1.6rem;
+	max-width: 220px;
+}
+
+.menu__btn {
+	display: none;
+}
+
+#open {
+	width: 50px;
+	height: 20px;
+}
+
+@media screen and (max-width: 900px) {
+	.page {
+		display: block;
+		max-width: 600px;
+		margin: auto;
+		padding: 0;
+	}
+
+	.main {
+		display: block;
+		margin: auto;
+		height: auto;
+	}
+
+	.navbar {
+		padding: 20px 0;
+		align-items: center;
+	}
+
+	.header {
+		display: block;
+	}
+
+	.header__heading {
+		padding-top: 20px;
+		max-width: 100%;
+		/* font-size: 2rem; */
+	}
+
+	.side {
+		margin: 30px 0;
+	}
+
+	.news {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.card__img-container {
+		width: 100px;
+	}
+
+	.attribution {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.menu__close {
+		width: 80%;
+		display: flex;
+		justify-content: end;
+		padding: 30px;
+	}
+
+	.menu__btn {
+		display: block;
+		cursor: pointer;
+	}
+
+	.nav-container {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		height: 100dvh;
+		background-color: rgb(0, 0, 26, 0.2);
+		display: flex;
+		justify-content: end;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s;
+	}
+
+	.nav {
+		width: 60%;
+		flex-direction: column;
+		gap: 20px;
+		background-color: #fff;
+		padding: 0;
+		padding-left: 30px;
+		margin: 0;
+		position: relative;
+		right: 100%;
+		/* transform: translateX(100%); */
+		transition: right 0.1s;
+	}
+
+	.nav__item {
+		font-weight: bold;
+		padding: 10px 0;
+		width: 100%;
+	}
+
+	.open {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.open .nav {
+		left: 0;
+		/* transform: translateX(0); */
+	}
 }
